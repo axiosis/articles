@@ -1,7 +1,7 @@
 % copyright (c) 2018 Groupoid Infinity
 
 \documentclass{article}
-\usepackage[english,russian]{babel}
+\usepackage[english,ukrainian]{babel}
 \usepackage{hyphenat}
 \usepackage{listings}
 \usepackage{amsmath}
@@ -20,18 +20,17 @@
 \newcommand*{\thead}[1]{\multicolumn{1}{c}{\bfseries #1}}
 \lstset{basicstyle=\small,inputencoding=utf8}
 
-\addto\captionsrussian{\renewcommand{\contentsname}{Зміст}}
-\addto\captionsrussian{\def\refname{Список використаних джерел}}
-\addto\captionsrussian{\renewcommand{\abstractname}{Анотація}}
-
+\addto\captionsukrainian{\renewcommand{\contentsname}{Зміст}}
+\addto\captionsukrainian{\def\refname{Список використаних джерел}}
+\addto\captionsukrainian{\renewcommand{\abstractname}{Анотація}}
 
 \begin{document}
-
-\title{Anders: гомотопічна базова бібліотека}
+\newpage\newpage
+\title{Базова бібліотека}
 \author{Максим Сохацький $^1$}
 \date{ \small $^1$ Національний технічний університет України \\
        «Київський Політехнічний Інститут» ім. Ігора Сікорського \\
-       29 жовтня 2018 }
+       29 жовтня 2023 }
 \maketitle
 
 \begin{abstract}
@@ -120,7 +119,7 @@ $\Pi$-тип також називається залежним добутком
 залежних функцій, неперервниї відображень, етальних відображень, розшарувань, квантора
 узанальнення $\forall$, імплікації, тощо.
 
-\subsection{Формація}
+ \subsection{Формація}
 
 $\textbf{Визначення\ 1.1}$ ($\Pi$-формація, залежний добуток).
 $\Pi$-типи репрезентують спосіб створення просторів залежних функцій  $f: \Pi(x:A), B(x)$ в певному всесвіті $U_i$,
@@ -130,7 +129,7 @@ $$
 $$
 \begin{lstlisting}[mathescape=true]
 def Pi (A : U) (B : A $\rightarrow$ U) : U
- := $\Pi$ (x : A), B x
+ := $\Pi$ (x : A), B(x)
 \end{lstlisting}
 
 \subsection{Конструкція}
@@ -139,17 +138,17 @@ $\textbf{Визначення\ 1.2}$ ($\lambda$-функція).
 Лямбда конструктор визначає нову лямбда функцію в просторі залежних функцій,
 вона ще називається лямбда абстракцією і позначається як $\lambda x. b(x)$ або $x \mapsto b(x)$.
 $$
-    \backslash (x: A) \rightarrow b : \Pi(A,B) =_{def}
+    \lambda (x: A) \rightarrow b(x) : \Pi(A,B) =_{def}
 $$
 $$
     \prod_{A:U}\prod_{B:A \rightarrow U}\prod_{a: A}\prod_{b:B(a)}\lambda x.b.
 $$
 \begin{lstlisting}[mathescape=true]
 def lambda (A: U) (B: A $\rightarrow$ U) (b: Pi A B)
-  : Pi A B := $\lambda$ (x : A), b x
+  : Pi A B := $\lambda$ (x : A), b(x)
 
 def lam (A B: U) (f: A $\rightarrow$ B)
-  : A $\rightarrow$ B := $\lambda$ (x : A), f x
+  : A $\rightarrow$ B := $\lambda$ (x : A), f(x)
 \end{lstlisting}
 
 Коли кодомен не залежить від значеення з домену функції $f: A \rightarrow B$
@@ -165,7 +164,7 @@ $\textbf{Визначення\ 1.3}$ (Принцип індукції). Якшо
 \begin{lstlisting}[mathescape=true]
 def $\Pi$-ind (A : U) (B : A $\rightarrow$ U) (C : Pi A B $\rightarrow$ U)
     (g: $\Pi$ (x: Pi A B), C x)
-  : $\Pi$ (p: Pi A B), C p := $\lambda$ (p: Pi A B), g p
+  : $\Pi$ (p: Pi A B), C p := $\lambda$ (p: Pi A B), g(p)
 \end{lstlisting}
 
 \noindent $\textbf{Визначення\ 1.3.1}$ ($\lambda$-аплікація).
@@ -177,11 +176,8 @@ $$
 $$
 
 \begin{lstlisting}[mathescape=true]
-def apply (A: U) (B: A $\rightarrow$ U)
-    (f: Pi A B) (a: A) : B a := f a
-
-def app (A B: U) (f: A $\rightarrow$ B)
-    (x: A): B := f x
+def apply (A: U) (B: A $\rightarrow$ U) (f: Pi A B) (a: A) : B a := f(a)
+def app (A B: U) (f: A $\rightarrow$ B) (x: A): B := f(x)
 \end{lstlisting}
 
 \noindent $\textbf{Визначення\ 1.3.2}$ (Композиція функцій).
@@ -203,7 +199,7 @@ $$
 \begin{lstlisting}[mathescape=true]
 def $\Pi$-$\beta$ (A : U) (B : A $\rightarrow$ U) (a : A) (f : Pi A B)
   : Path (B a) (apply A B (lambda A B f) a) (f a)
-  := idp (B a) (f a)
+ := idp (B a) (f a)
 \end{lstlisting}
 
 \subsection{Унікальність}
@@ -216,7 +212,7 @@ $$
 \begin{lstlisting}[mathescape=true]
 def $\Pi$-$\eta$ (A : U) (B : A $\rightarrow$ U) (a : A) (f : Pi A B)
   : Path (Pi A B) f ($\lambda$ (x : A), f x)
-:= idp (Pi A B) f
+ := idp (Pi A B) f
 \end{lstlisting}
 
 \newpage
@@ -232,7 +228,8 @@ $\Sigma$-тип --- це простір, що містить залежні па
 телескопів, лінз, контекстів, об'єктів, алгебр, квантору існування $\exists$, тощо.
 
 \subsection{Формація}
-$\textbf{Визначення\ 2.1}$ ($\Sigma$-формація, Залежна сума). Тип залежної суми
+
+$\textbf{Визначення\ 2.1}$ ($\Sigma$-формація, залежна сума). Тип залежної суми
 індексований типом  $A$ в сенсу кодобутку або диз'юнктивної суми, де тільки одне
 волокно кодомену $B(x)$ присутнє в парі.
 $$
@@ -243,5 +240,84 @@ def Sigma (A: U) (B: A $\rightarrow$ U) : U
  := $\Sigma$ (x: A), B(x)
 \end{lstlisting}
 
+\subsection{Конструкція}
+
+$\textbf{Визначення\ 2.2}$ (Залежна пара). Конструктор залежної пари —
+це спосіб визначення індексованої пари над типом $A$ елементу кодобутку
+або диз'юнктивного об'єднання.
+$$
+      \mathbf{pair} : \Sigma(A,B) =_{def}
+$$
+$$
+      \prod_{A:U}\prod_{B:A \rightarrow U}\prod_{a:A}\prod_{b:B(a)} (a,b).
+$$
+\begin{lstlisting}[mathescape=true]
+def pair (A: U) (B: A $\rightarrow$ U) (a: A) (b: B a)
+  : Sigma A B := (a, b)
+\end{lstlisting}
+
+\newpage
+
+\subsection{Елімінація}
+
+$\textbf{Визначення\ 2.3}$ (Проекції). Залежні проекції
+$pr_{1}: \Sigma(A,B) \rightarrow A$ і
+$pr_{2}: \Pi_{x: \Sigma(A,B)} B(pr_{1}(x))$ є деконструкторами пари.
+$$
+    \mathbf{pr}_1 : \prod_{A:U} \prod_{B:A \rightarrow U} \prod_{x: \Sigma(A,B)} A
+$$
+$$
+    =_{def} .1 =_{def} (a,b) \mapsto a.
+$$
+$$
+    \mathbf{pr}_2 : \prod_{A:U} \prod_{B:A \rightarrow U} \prod_{x: \Sigma(A,B)} B(x.1)
+$$
+$$
+    =_{def} .2 =_{def} (a,b) \mapsto b.
+$$
+\begin{lstlisting}[mathescape=true]
+def pr$_1$ (A: U) (B: A $\rightarrow$ U) (x: Sigma A B) : A := x.1
+def pr$_2$ (A: U) (B: A $\rightarrow$ U) (x: Sigma A B) : B (pr$_1$ A B x) := x.2
+\end{lstlisting}
+
+Якшо ви хочете доступитися до глибокого (>1) поля в сігма-типі — ви повинні використати
+серію елімінаторів $.2$, яка закінчується елімінатором $.1$.
+\\
+\\
+\noindent $\textbf{Визначення\ 2.3.1}$ (Принцип індукції $\Sigma$). Каже, що
+предикат, який виконується для двох проекцій, він виконується також і для
+всього простору пар.
+
+\begin{lstlisting}[mathescape=true]
+def $\Sigma$-ind (A : U) (B : A $\rightarrow$ U)
+    (C : $\Pi$ (s: $\Sigma$ (x: A), B x), U)
+    (g: $\Pi$ (x: A) (y: B x), C (x,y))
+    (p: $\Sigma$ (x: A), B x) : C p := g p.1 p.2
+\end{lstlisting}
+
+\subsection{Обчислювальність}
+
+$\textbf{Визначення\ 2.4}$ ($\Sigma$-обчислювальність).
+\begin{lstlisting}[mathescape=true]
+def $\Sigma$-$\beta_1$ (A : U) (B : A $\rightarrow$ U) (a : A) (b : B a)
+  : Path A a (pr$_1$ A B (a, b)) := idp A a
+
+def $\Sigma$-$\beta_2$ (A : U) (B : A $\rightarrow$ U) (a : A) (b : B a)
+  : Path (B a) b (pr$_2$ A B (a, b)) := idp (B a) b
+\end{lstlisting}
+
+\subsection{Унікальність}
+
+$\textbf{Визначення\ 2.5}$ ($\Sigma$-унікальність).
+\begin{lstlisting}[mathescape=true]
+def $\Sigma$-$\eta$ (A : U) (B : A $\rightarrow$ U) (p : Sigma A B)
+  : Path (Sigma A B) p (pr$_1$ A B p, pr$_2$ A B p)
+ := idp (Sigma A B) p
+\end{lstlisting}
+
+\newpage
+\section{Ідентифікаційні простори}
+
+\newpage
 \end{document}
 
