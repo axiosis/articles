@@ -1,0 +1,75 @@
+% copyright (c) 2018 Groupoid Infinity
+
+\documentclass{article}
+\usepackage[english,ukrainian]{babel}
+\usepackage{hyphenat}
+\usepackage{listings}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{mathtools}
+\usepackage{url}
+\usepackage{tikz-cd}
+\usepackage[utf8]{inputenc}
+\theoremstyle{definition}
+\newtheorem{theorem}{Теорема}
+\newtheorem{definition}{Визначення}
+\newtheorem{exercise}{Вправа}
+\newtheorem{example}{Приклад}
+\newcommand*{\incmap}{\hookrightarrow}
+\newcommand*{\thead}[1]{\multicolumn{1}{c}{\bfseries #1}}
+\lstset{basicstyle=\small,inputencoding=utf8}
+
+\addto\captionsukrainian{\renewcommand{\contentsname}{Зміст}}
+\addto\captionsukrainian{\def\refname{Список використаних джерел}}
+\addto\captionsukrainian{\renewcommand{\abstractname}{Анотація}}
+
+\begin{document}
+\newpage Немає Нічого \newpage
+\title{Anders: мова простору}
+\author{Максим Сохацький $^1$}
+\date{ \small $^1$ Національний технічний університет України \\
+       «Київський Політехнічний Інститут» ім. Ігора Сікорського \\
+       29 жовтня 2023 }
+\maketitle
+
+\begin{abstract}
+Тут представлена реінкарнація \textbf{cubicaltt} названа \textbf{Anders}.
+\end{abstract}
+
+\section*{Вступ}
+
+\textbf{Anders} — модальний верифікатор HoTT на основі: класичного MLTT-80 [8]
+з типами 0, 1, 2, W; CCHM [3] у CHM [4] модифікації як кубічна
+система типів з Кан операціями hcomp/transp; HTS [10] строга рівність
+на претипах; стека де Рама [2] у якості модальності. Ми схильні поки
+що не торкатися загальних рекурсивних вищих індуктивних схем,
+натомість ми спробуємо виразити якомога більше HIT через W, Coequlizer
+і HubSpokes Disc у стилі гомотопічної бібліотеки HoTT/Coq і теореми Three-HIT.
+
+Мова HTS, запропонована Воєводським, розкриває дві різні моделі
+попереднього пучка теорії типів: внутрішня є попереднім пучком
+гомотопічної системи типу, що моделює HoTT, і зовнішня є традиційним
+попереднім пучком системи типу Мартіна-Лефа, який моделює теорію множин
+за допомогою UIP. Мотивація цього подвоєння полягає в здатності виражати
+напівсемпліціальні типи. Теоретичні роботи зі злиття внутрішніх і
+зовнішніх мов були продовжені в 2LTT [1].
+
+\newpage
+\section{Істаляція}. Поки ми знаходимося на нашому шляху до Lean-подібної
+тактичної мови, зараз ми знаходимося на етапі звичайної кубічної перевірки
+типу HTS з примітивами у стилі CHM. Ви можете спробувати його з джерел
+Github: groupoid/anders1 або встановити через менеджер пакетів OPAM.
+Основними командами є перевірка (для перевірки програми) і repl (для входу в оболонку перевірки).
+\begin{lstlisting}
+$ opam install anders
+\end{lstlisting}
+
+\textbf{Anders} швидкий, ідіоматичний і навчальний (подумайте про оптимізований Mini-TT).
+Ми ретельно малюємо улюблений синтаксис, сумісний з Lean, щоб відповідати 200
+LOC у Menhir. Ядро CHM — це 1K LOC. Весь Anders компілюється менше 2 секунд і
+перевіряє всю базову бібліотеку менше 1 секунди [i7-8700]. Верифікаторо Anders
+Homotopy Type System постачається з власною гомотопічною бібліотекою [2].
+
+\end{document}
+
