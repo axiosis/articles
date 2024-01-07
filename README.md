@@ -6,7 +6,7 @@
 8. DOI: 10.13140/RG.2.2.34143.12963 <a href="https://axiosis.github.io/articles/henk/pts_ua.pdf">Henk: чиста полiморфна мова</a>. 2016
 9. DOI: 10.13140/RG.2.2.34143.12963 <a href="https://axiosis.github.io/articles/joe/joe_ua.pdf">Joe: сертифікований інтерпретатор</a>. 2017
 10. DOI: 10.13140/RG.2.2.19043.63523 <a href="https://axiosis.github.io/articles/bloch/quantum.pdf">Bloch: квантова мова</a>. 2018
-11. DOI: 10.13140/RG.2.2.25754.52169 <a href="https://axiosis.github.io/articles/per/anno_ua.pdf">Anders: інтерналізація MLTTT-75</a>. 2019
+11. DOI: 10.13140/RG.2.2.25754.52169 <a href="https://axiosis.github.io/articles/per/anno_ua.pdf">Per: інтерналізація MLTTT-75</a>. 2019
 12. DOI: 10.13140/RG.2.2.14010.47045 <a href="https://axiosis.github.io/articles/anders/anders.pdf">Anders: мова простору</a>. 2021
 13. DOI: 10.13140/RG.2.2.14010.47046 <a href="https://axiosis.github.io/articles/holib/holib.pdf">Anders: базова бібліотека</a>. 2020
 
